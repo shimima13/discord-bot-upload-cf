@@ -16,4 +16,5 @@ RUN echo "Make sure discord is installed:"
 
 RUN python -c "import discord"
 
-ENTRYPOINT [ "conda", "run", "--no-capture-output", "-n", "discord_upload_bot_env", "python", "bot.py"]
+# 执行 bot.py
+CMD ["conda", "run", "-n", "discord_upload_bot_env", "python", "bot.py"]

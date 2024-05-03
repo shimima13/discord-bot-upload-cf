@@ -8,7 +8,7 @@ CLOUDFLARE_API_TOKEN = os.environ.get('CLOUDFLARE_API_TOKEN')
 CLOUDFLARE_ZONE_ID = os.environ.get('CLOUDFLARE_ZONE_ID')
 
 # 初始化 Discord 客户端
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.default())
 
 # Cloudflare Image 服务的 API 地址
 CLOUDFLARE_IMAGE_API_URL = f"https://api.cloudflare.com/client/v4/zones/{CLOUDFLARE_ZONE_ID}/images/v1"
