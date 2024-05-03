@@ -1,15 +1,12 @@
 import discord
 import requests
-import configparser
+import os
 
-# 读取配置文件
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 # 获取 Discord Bot Token 和 Cloudflare 相关配置
-BOT_TOKEN = config['Discord']['BOT_TOKEN']
-CLOUDFLARE_API_TOKEN = config['Cloudflare']['API_TOKEN']
-CLOUDFLARE_ZONE_ID = config['Cloudflare']['ZONE_ID']
+BOT_TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+CLOUDFLARE_API_TOKEN = os.environ.get('CLOUDFLARE_API_TOKEN')
+CLOUDFLARE_ZONE_ID = os.environ.get('CLOUDFLARE_ZONE_ID')
 
 # 初始化 Discord 客户端
 client = discord.Client()
