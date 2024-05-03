@@ -1,8 +1,10 @@
 version: '3'
 
 services:
-  discord-bot:
+  app:
+    container_name: discord-bot
     image: ghcr.io/shimima13/discord-bot-upload-cf:latest
+    build: .
     environment:
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN}
