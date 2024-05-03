@@ -4,12 +4,16 @@ FROM continuumio/miniconda3
 WORKDIR /app
 
 # 复制项目文件到工作目录
-COPY . /app
+COPY environment.yml .
+COPY bot.py .
 
 # 创建 conda 环境并安装依赖
-RUN conda env create -f environment.yml && \
-    echo "source activate discord_upload_bot_env" > ~/.bashrc && \
-    /bin/bash -c "source activate discord_upload_bot_env"
+RUN conda env create -f environment.yml
 
-# 启动 bot.py
-CMD ["python", "bot.py"]
+SHELL [ "conda", "run", "-n", "discord_upload_bot_env", "/bin/bash", "-c"]
+
+RUN echo "Make sure discord is installed:"
+
+RUN python -c "import discord"
+
+ENTRYPOINT [ "conda", "run", "--no-capture-output", "-n", "discord_upload_bot_env", "python", "bot.py"]
