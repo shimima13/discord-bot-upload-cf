@@ -8,9 +8,9 @@ COPY . /app
 
 # 创建 conda 环境并安装依赖
 RUN conda env create -f environment.yml
-
-# 激活 conda 环境
-SHELL ["conda", "run", "-n", "discord_upload_bot_env", "/bin/bash", "-c"]
+RUN conda env create -f environment.yml && \
+    echo "source activate discord_upload_bot_env" > ~/.bashrc && \
+    /bin/bash -c "source activate discord_upload_bot_env"
 
 # 启动 bot.py
 CMD ["python", "bot.py"]
