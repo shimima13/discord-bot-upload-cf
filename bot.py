@@ -2,7 +2,6 @@ import discord
 import requests
 import os
 
-
 # 获取 Discord Bot Token 和 Cloudflare 相关配置
 BOT_TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
 CLOUDFLARE_API_TOKEN = os.environ.get('CLOUDFLARE_API_TOKEN')
