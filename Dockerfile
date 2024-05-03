@@ -5,16 +5,14 @@ WORKDIR /app
 
 # 复制项目文件到工作目录
 COPY environment.yml .
-COPY bot.py .
 
 # 创建 conda 环境并安装依赖
 RUN conda env create -f environment.yml
 
-SHELL [ "conda", "run", "-n", "discord_upload_bot_env", "/bin/bash", "-c"]
+RUN echo source activate discord_upload_bot_env > ~/.bashrc
+ENV PATH /opt/conda/envs/discord_upload_bot_env/bin:$PATH
 
-RUN echo "Make sure discord is installed:"
-
-RUN python -c "import discord"
+COPY . .
 
 # 执行 bot.py
-CMD ["conda", "run", "-n", "discord_upload_bot_env", "python", "bot.py"]
+CMD ["python", "bot.py"]
