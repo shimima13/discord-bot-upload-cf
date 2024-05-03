@@ -7,7 +7,6 @@ WORKDIR /app
 COPY . /app
 
 # 创建 conda 环境并安装依赖
-RUN conda env create -f environment.yml
 RUN conda env create -f environment.yml && \
     echo "source activate discord_upload_bot_env" > ~/.bashrc && \
     /bin/bash -c "source activate discord_upload_bot_env"
